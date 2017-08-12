@@ -1,0 +1,37 @@
+@charset "utf-8";
+/* CSS Document */
+*{margin:0;padding:0;font-size:14px; font-family:'微软雅黑';}
+.clear{clear:both;}
+.login_title{height:60px;width:100%; background:#F3F3F3;}
+.login_nav{width:1000px;height:60px;margin:0 auto;}
+.login_nav .nav_left{float:left;width:550px;height:60px;}
+.login_nav .nav_left img{float:left;margin-top:6px;}
+.login_nav .nav_right{float:right;width:450px;height:60px;}
+.login_nav .nav_right em{background-color: #9b231c;
+    color: #fff;
+    cursor: pointer;
+    line-height: 22px;
+    padding: 0 10px;
+	float:right;
+	margin-top:20px;
+	font-style: normal;
+}
+.yj5 {
+    border-radius: 5px;
+}
+.login_content{width:100%;height:535px;background:#3B4C9E;}
+.login_con{width:1000px;height:535px;margin:0 auto;}
+.login_banner{float:left;width:615px;height:535px;}
+
+.login_form{width:380px;float:right;height:535px;}
+
+.login_form input[type=text],input[type=password]{border:0px;width:255px;height:42px;line-height:42px;color:#FFFFFF;padding:0 8px 0 38px;}
+.login_form input[type=submit]{border:0px;width:255px;height:42px;}
+.login_form .username{ background:url(../images/input01.png);margin:185px 0 0 40px;}
+.login_form .password{ background:url(../images/input02.png);margin:20px 0 0 40px;}
+.login_form .btnSub{ background:url(../images/input03.png);margin:30px 0 0 40px;border:0px;padding:10px 106px;cursor:pointer;}
+
+
+.login_footer{width:1000px;height:45px;line-height:45px;text-align:center;margin:0 auto;}
+.login_footer span{list-style-type:none;font-size:12px;color:#878789;padding:0 5px;border-right:1px solid #D2D4D9;}
+.login_footer span:first-child,span:last-child{border-right:0;}

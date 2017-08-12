@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    </head>
+    <body bgcolor="lightblue" >
+        <table border="1">
+            <caption><strong>{{ student.roomid.buildingid.name }}</strong>栋<strong>{{ student.roomid.name }}</strong>寝室维修记录</caption>
+            <tr><th>物品名</th><th>登记时间</th><th>维修原因</th><th>维修时间</th><th>维修人员</th><th>维修人员联系方式</th><th>维修人员备注</th></tr>
+            {% for repair in repair_set %}
+            <tr><td>{{ repair.item }}</td><td>{{ repair.book_dt }}</td><td>{{ repair.reason }}</td><td>{{ repair.fix_dt }}</td><td>{{ repair.maintenanceid.name }}</td><td>{{ repair.maintenanceid.contact }}</td><td>{{ repair.remark }}</td></tr>
+            {% endfor %}
+        </table>
+        <a href="{% url 'dorm:student__repair' %}" >新增维修</a><br />
+        <a href="{% url 'dorm:student__index' %}" >返回</a>
+    </body>
+</html>

@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    </head>
+    <body bgcolor="lightblue" >
+        <p><strong>{{ building.name }}</strong>栋详细信息：</p>
+        <p> 共有<strong>{{ building.amount }}</strong>个房间，其中有<strong>{{ empty }}</strong>间空房，<strong>{{ full }}</strong>间全满，<strong>{{ not_full }}</strong>间未满</p>
+        <table border="1">
+            <tr><th>房间名</th><th>房间类别</th><th>入住情况</th><th>所属班级</th><th>状态</th><th>操作</th></tr>
+            {% for room in room_tab %}
+            <tr><td>{{ room.name }}</td><td>{{ room.room_type }}</td><td>{{ room.occupant }}/{{ room.capacity }}</td><td>{% for cls in room.class_set %}{{ cls.name }}，{% endfor %}</td><td>{% if room.is_full %}已满{% else %}未满{% endif %}</td><td><a href="{% url 'dorm:housemaster__member' room.id %}" >查看寝室成员</a></td></tr>
+            {% endfor %}
+        </table>
+        <a href="{% url 'dorm:housemaster__index' %}" >返回</a>
+    </body>
+</html>

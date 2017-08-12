@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    </head>
+    <body bgcolor="lightblue" >
+        <table border="1">
+            <caption><strong>{{ building.name }}</strong>栋历史来访登记</caption>
+            <tr><th>姓名</th><th>性别</th><th>证件类型</th><th>证件号</th><th>联系方式</th><th>来访时间</th><th>宿管</th><th>宿管联系方式</th></tr>
+            {% for visitor in visitor_set %}
+            <tr><td>{{ visitor.name }}</td><td>{% if visitor.sex == True %}男{% else %}女{% endif %}</td><td>{{ visitor.document_type }}</td><td>{{ visitor.documentno }}</td><td>{{ visitor.contact }}</td><td>{{ visitor.dt }}</td><td>{{ visitor.housemasterid.name }}</td><td>{{ visitor.housemasterid.contact }}</td></tr>
+            {% endfor %}
+        </table>
+        <a href="{% url 'dorm:housemaster__add_visitor' %}" >新增来访记录</a><br />
+        <a href="{% url 'dorm:housemaster__index' %}" >返回</a>
+    </body>
+</html>

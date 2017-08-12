@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    </head>
+    <body bgcolor="lightblue" >
+        <p><strong>{{ housemaster.buildingid.name }}</strong>栋<strong>{{ housemaster.name }}</strong>宿舍管理员，你好</p>
+        <p>共有<strong>{{ building.amount }}</strong>个房间，其中有<strong>{{ empty }}</strong>间空房，<strong>{{ full }}</strong>间全满，<strong>{{ not_full }}</strong>间未满<a href="{% url 'dorm:housemaster__building' %}" >查看详情</a></p>
+        <a href="{% url 'dorm:housemaster__lookup' %}" >查询学生信息</a><br />
+        <a href="{% url 'dorm:housemaster__checkin' %}" >入住审核</a><br />
+        <a href="{% url 'dorm:housemaster__unsubscribe' %}" >退宿审核</a><br />
+        <a href="{% url 'dorm:housemaster__visitor' %}" >来访</a><br />
+        <a href="{% url 'dorm:housemaster__mark' %}" >为宿舍评分</a><br />
+        <a href="{% url 'dorm:user_login' %}" >注销</a><br />
+    </body>
+</html>

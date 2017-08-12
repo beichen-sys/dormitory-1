@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    </head>
+    <body bgcolor="lightblue" >
+        <table border="1">
+            <caption><strong>{{ student.roomid.buildingid.name }}</strong>栋<strong>{{ student.roomid.name }}</strong>寝室评分记录</caption>
+            <tr><th>日期</th><th>评分</th><th>等级</th><th>评分人</th></tr>
+            {% for mark in mark_set %}
+            <tr><td>{{ mark.dt }}</td><td>{{ mark.score }}</td><td>{% if mark.score < 60 %}差{% elif mark.score < 75 %}中{% elif mark.score < 90 %}良{% else %}优{% endif %}</td><td>{{ mark.housemasterid.name }}</td></tr>
+            {% endfor %}
+        </table>
+        <a href="{% url 'dorm:student__index' %}" >返回</a><br />
+    </body>
+</html>

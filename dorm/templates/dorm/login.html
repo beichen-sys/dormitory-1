@@ -1,0 +1,93 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>学生公寓管理系统-系统登录</title>
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'dorm/css/login.css' %}"/>
+<script type="text/javascript"  src="js/jquery-1.11.0.min.js"></script>
+</head>
+<body>
+<div class="login_title">
+	<div class="login_nav">
+    	<div class="nav_left">
+            <img src="{% static 'dorm/images/logo.png' %}" width="auto" height="49"/>
+            <img src="{% static 'dorm/images/log04.png' %}" width="278" height="49" />
+        </div>
+    	<div class="nav_right">
+        	<em class="yj5" onclick="AddFavorite(window.location,document.title)"> 收藏</em>
+        </div>
+    </div>
+</div>
+<div class="login_content">
+    <div class="login_con">
+        <div class="login_banner">
+            <img src="{% static 'dorm/images/dl.png' %}" width="615" height="535" />
+        </div>
+        <div class="login_form">
+            <form action="{% url 'dorm:confirm' %}" method="post">
+                {% csrf_token %}
+                <input type="text" id="userAccount" name="userAccount" class="username"/>
+                <input type="password" id="userPwd" name="userPwd" class="password"/>
+                <input type="submit" id="loginBtn" class="btnSub" value="登&nbsp;&nbsp;录" style="font-size: 16px;font-weight: bold;color: #fff;font-family: 微软雅黑;"/>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="login_footer">
+    <span>PC1.0-Apartment Manage 版本号：0.1.0 </span>
+
+
+
+
+
+
+</div>
+</body>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".login_form").keydown(function(e){
+		if(e.keyCode==13){
+			$("#loginBtn").click();
+		}
+	});
+	$("#loginBtn").click(function(){
+		var _this = $(this);
+		var account = $("input[name=userAccount]");
+		var pwd = $("input[name=userPwd]");
+		if(account.val() == ""){
+			alert("请输入账号！");
+			return false;
+		}else if(pwd.val() == ""){
+			alert("请输入密码！");
+			return false;
+		}
+		if(_this.val()=="正在登录..."){
+			return false;
+		}else{
+			_this.val("正在登录...");
+			var loginForm = $("form");
+			var data = loginForm.serialize();
+			$.post("http://hqxsgy.ouc.edu.cn:80/account/login",data,function(data){
+				if(data.code == "1"){
+					window.location.href="http://hqxsgy.ouc.edu.cn:80/manage/"
+				}else{
+					alert(data.msg);
+				}
+				_this.val("登  录");
+			},"json");
+		}
+	});
+});
+function AddFavorite(sURL, sTitle) {
+	try {
+		window.external.addFavorite(sURL, sTitle);
+	} catch (e) {
+		try {
+			window.sidebar.addPanel(sTitle, sURL, "");
+		} catch (e) {
+			alert("加入收藏失败，请使用Ctrl+D进行添加");
+		}
+	}
+}
+</script>
+</html>

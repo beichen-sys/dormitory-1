@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    </head>
+    <body bgcolor="lightblue" >
+        <p>{{ secretary.collegeid.name }}{{ secretary.name }}书记，你好</p>
+        <p>你院有{{ class_amount }}个班级，共{{ student_amount }}名学生</p>
+        {% for cls in class_set %}
+        <a href="{% url 'dorm:secretary__class' cls.id %}" >{{ cls.name }}</a><br />
+        {% endfor %}
+        <a href="{% url 'dorm:secretary__lookup' %}" >查询学生信息</a><br />
+        <a href="{% url 'dorm:secretary__checkin' %}" >入住审核</a><br />
+        <a href="{% url 'dorm:secretary__unsubscribe' %}" >退宿审核</a><br />
+        <a href="{% url 'dorm:user_login' %}" >注销</a><br />
+    </body>
+</html>

@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    </head>
+    <body bgcolor="lightblue" >
+        <form action="{% url 'dorm:housemaster__unsubscribe_result' %}" method="post" >
+            {% csrf_token %}
+            <table border="1" >
+                <caption>退宿申请表</caption>
+                <tr><th>学号</th><th>班级</th><th>姓名</th><th>房间号</th><th>已住情况</th><th>申请时间</th><th>申请原因</th><th>审核</th></tr>
+                {% for rec in rec_set %}
+                <tr><td>{{ rec.sno.sno }}</td><td>{{ rec.sno.classid.name }}</td><td>{{ rec.sno.name }}</td><td>{{ rec.roomid.name }}</td><td>{{ rec.occupant }}/{{ rec.roomid.capacity }}</td><td>{{ rec.dt }}</td><td>{{ rec.reason }}</td><td><input type="checkbox" name="checked" value="{{ rec.id }}" {% if rec.housemaster_check %}checked{% endif %} /></td></tr>
+                {% endfor %}
+            </table>
+            <input type="submit" value="提交" />
+        </form>
+        <a href="{% url 'dorm:housemaster__index' %}" >返回</a>
+    </body>
+</html>

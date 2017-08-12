@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    </head>
+    <body bgcolor="lightblue" >
+        <form action="{% url 'dorm:housemaster__new_visitor' %}" method="post" >
+            {% csrf_token %}
+            <label for="name" >姓名：</label><input id="name" type="text" name="name" /><br />
+            <label for="sex" >性别：</label><input id="sex" name="sex" type="radio" value="1" />男<input name="sex" type="radio" value="0" />女<br />
+            <label for="type" >证件类型：</label>
+                <select id="type" name="type" >
+                    <option>身份证</option>
+                    <option>学生证</option>
+                    <option>军官证</option>
+                </select>
+                <br />
+            <label for="id" >证件号：</label><input id="id" type="text" name="id" /><br />
+            <label for="contact" >联系方式：</label><input id="contact" type="text" name="contact" /><br />
+            <input type="submit" value="提交" /><br />
+        </form>
+        <a href="{% url 'dorm:housemaster__visitor' %}" >返回</a>
+    </body>
+</html>

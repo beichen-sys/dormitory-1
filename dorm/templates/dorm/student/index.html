@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    </head>
+    <body bgcolor="lightblue" >
+        <p><strong>{{ student.name }}</strong>同学，你好</p>
+        <p>你的寝室剩余电量为<strong>{{ fee.remain }}</strong>度，{% if fee.remain < 20 %}电量不多了，请尽快充值{% else %}电量充足，请放心使用{% endif %}。</p>
+        <p>你的寝室上一次评分在<strong>{{ mark.dt }}</strong>，打分<strong>{{ mark.score }}</strong>分，<strong>{% if mark.score < 60 %}差{% elif mark.score < 75 %}中{% elif mark.score < 90 %}良{% else %}优{% endif %}</strong>，评分人：<strong>{{ mark.housemasterid.name }}</strong>宿管</p>
+        <p>你的辅导员是<strong>{{ student.classid.instructorid.name }}</strong>，联系方式：<strong>{{ student.classid.instructorid.contact }}</strong></p>
+        <table border="1" >
+            <caption><strong>{{ student.classid.collegeid.name }}</strong>书记</caption>
+            <tr><th>姓名</th><th>联系方式</th></tr>
+            {% for secretary in secretary_set %}
+            <tr><td>{{ secretary.name }}</td><td>{{ secretary.contact }}</td></tr>
+            {% endfor %}
+        </table>
+        <table border="1" >
+            <caption><strong>{{ student.roomid.buildingid }}</strong>栋宿管</caption>
+            <tr><th>姓名</th><th>联系方式</th></tr>
+            {% for housemaster in housemaster_set %}
+            <tr><td>{{ housemaster.name }}</td><td>{{ housemaster.contact }}</td></tr>
+            {% endfor %}
+        </table>
+        <a href="{% url 'dorm:student__mark' %}" >历史评分</a><br />
+        <a href="{% url 'dorm:student__fee' %}" >电费充值记录</a><br />
+        <a href="{% url 'dorm:student__unsubscribe' %}" >办理退宿</a><br />
+        <a href="{% url 'dorm:student__repair_record' %}" >维修</a><br />
+        <a href="{% url 'dorm:student__building_select' %}" >楼栋信息</a><br />
+        <a href="{% url 'dorm:user_login' %}" >注销</a><br />
+    </body>
+</html>

@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    </head>
+    <body bgcolor="lightblue" >
+        <form action="{% url 'dorm:housemaster__new_mark' %}" method="post" >
+            {% csrf_token %}
+            <label for="room" >房间名称：</label><input id="room" type="text" name="room" /><br />
+            <label for="score" >分数：</label><input id="score" type="text" name="score" /><br />
+            <label for="remark" >备注：</label><input id="remark" type="text" name="remark" /><br />
+            <input type="submit" value="提交" /><br />
+        </form>
+        <a href="{% url 'dorm:housemaster__index' %}" >返回</a>
+    </body>
+</html>

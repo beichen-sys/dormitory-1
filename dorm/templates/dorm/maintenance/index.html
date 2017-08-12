@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    </head>
+    <body bgcolor="lightblue" >
+        <table border="1" >
+            <caption>待维修记录表</caption>
+            <tr><th>楼栋名</th><th>房间名</th><th>物品名</th><th>登记时间</th><th>维修原因</th><th>操作</th></tr>
+            {% for repair in unfixed_list %}
+            <tr><td>{{ repair.roomid.buildingid.name }}</td><td>{{ repair.roomid.name }}</td><td>{{ repair.item }}</td><td>{{ repair.book_dt }}</td><td>{{ repair.reason }}</td><td><a href="{% url 'dorm:maintenance__repair' repair.id %}" >改为已维修</a></td></tr>
+            {% endfor %}
+        </table>
+        <table border="1" >
+            <caption>已维修记录表</caption>
+            <tr><th>楼栋名</th><th>房间名</th><th>物品名</th><th>登记时间</th><th>维修原因</th><th>维修时间</th><th>维修人员</th><th>维修备注</th></tr>
+            {% for repair in fixed_list %}
+            <tr><td>{{ repair.roomid.buildingid.name }}</td><td>{{ repair.roomid.name }}</td><td>{{ repair.item }}</td><td>{{ repair.book_dt }}</td><td>{{ repair.reason }}</td><td>{{ repair.fix_dt }}</td><td>{{ repair.maintenanceid.name }}</td><td>{{ repair.remark }}</td></tr>
+            {% endfor %}
+        </table>
+        <a href="{% url 'dorm:user_login' %}" >注销</a><br />
+    </body>
+</html>

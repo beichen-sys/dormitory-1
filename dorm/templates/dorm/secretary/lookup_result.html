@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    </head>
+    <body bgcolor="lightblue" >
+        <table border="1">
+            <caption>符合条件的学生记录</caption>
+            <tr><th>学号</th><th>姓名</th><th>班级</th><th>楼栋</th><th>房间</th><th>性别</th><th>联系方式</th><th>辅导员</th><th>辅导员联系方式</th></tr>
+            {% for student in student_set %}
+            <tr><td>{{ student.sno }}</td><td>{{ student.name }}</td><td>{{ student.classid.name }}</td><td>{{ student.roomid.buildingid.name }}</td><td>{{ student.roomid.name }}</td><td>{% if student.sex == True %}男{% else %}女{% endif %}</td><td>{{ student.contact }}</td><td>{{ student.classid.instructorid.name }}</td><td>{{ student.classid.instructorid.contact }}</td></tr>
+            {% endfor %}
+        </table>
+        <a href="{% url 'dorm:secretary__lookup' %}" >返回</a>
+    </body>
+</html>
